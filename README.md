@@ -10,7 +10,7 @@ Cả malware và benign đều được lấy từ [figshare](https://figshare.c
 Chạy file `auto_extract.py` sẽ tự động gọi file `start_extraction.py` nên chỉ cần chạy file `auto_extract.py` là đủ.  
 
 ### 2. Xử lí dữ liệu
-Script `manipulate_benign_data.py` xử lí dữ liệu từ kết quả của script `auto_extract.py`, chuyển thành format phù hợp và lưu toàn bộ vào file `dataset_file.txt`, lưu ý sửa lại các `đường dẫn trong script cho phù hợp`.
+Script `manipulate_data.py` xử lí dữ liệu từ kết quả của script `auto_extract.py`, chuyển thành format phù hợp và lưu toàn bộ vào file `dataset_file.txt`, lưu ý sửa lại các `đường dẫn trong script cho phù hợp`.
 
 ### 3. Random forest 
 Chạy script `random_forest.py` để lấy ra `50 api` và `50 string` được sử dụng nhiều nhất, chạy script minh họa thôi vì kết quả có sẵn trong file `training` luôn.
