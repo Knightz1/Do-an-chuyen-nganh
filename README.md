@@ -1,1 +1,1 @@
-# Do-an-chuyen-nganh
+**Note**: cần có IDA pro (nhóm sử dụng phiên bản 7.5) để chạy script 
