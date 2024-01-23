@@ -10,10 +10,10 @@ Cả malware và benign đều được lấy từ [figshare](https://figshare.c
 Chạy file `auto_extract.py` sẽ tự động gọi file `start_extraction.py` nên chỉ cần chạy file `auto_extract.py` là đủ.  
 
 ### 2. Xử lí dữ liệu
-Script `manipulate_data.py` xử lí dữ liệu từ kết quả của script `auto_extract.py`, chuyển thành format phù hợp và lưu toàn bộ vào file `dataset_file.txt`, lưu ý sửa lại các `đường dẫn trong script cho phù hợp`.
+Script `manipulate_data.py` xử lí dữ liệu từ kết quả của script `auto_extract.py`, chuyển thành format phù hợp và lưu toàn bộ vào file `dataset_file.txt`, lưu ý sửa lại các đường dẫn trong script cho phù hợp.
 
 ### 3. Random forest 
-Chạy script `random_forest.py` để lấy ra `50 api` và `50 string` được sử dụng nhiều nhất, chạy script minh họa thôi vì kết quả có sẵn trong file `training` luôn.
+Chạy script `random_forest.py` để lấy api và string được sử dụng nhiều nhât, chạy script minh họa thôi vì kết quả có sẵn trong file `training` luôn.
 
 ### 4. Adversarial samples generation
 - Mã nguồn mã độc: https://github.com/ytisf/theZoo/tree/master/malware/Source
@@ -21,4 +21,5 @@ Chạy script `random_forest.py` để lấy ra `50 api` và `50 string` đượ
 
 ### 5. Training
 Chạy script `training.py` với tham số đầu vào là tên file cần dự đoán mức độ độc hại, script sẽ bắt đầu train model và đưa ra kết quả dự đoán.
+- Note: script `training.py` khi chạy sẽ gọi script `file_info_extraction.py` nên cần đổi đường dẫn trong file đó lại cho phù hợp.
 
