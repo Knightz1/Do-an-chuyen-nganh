@@ -15,6 +15,10 @@ Script `manipulate_benign_data.py` xử lí dữ liệu từ kết quả của s
 ### 3. Random forest 
 Chạy script này để lấy ra `50 api` và `50 string` được sử dụng nhiều nhất, chạy script minh họa thôi vì kết quả có sẵn trong file `training` luôn.
 
-### 4. Training
+### 4. Adversarial samples generation
+- Mã nguồn mã độc: https://github.com/ytisf/theZoo/tree/master/malware/Source
+- Tool: https://github.com/weak1337/Alcatraz
+
+### 5. Training
 Chạy script `training.py` với tham số đầu vào là tên file cần dự đoán mức độ độc hại, script sẽ bắt đầu train model và đưa ra kết quả dự đoán.
 
