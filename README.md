@@ -13,7 +13,7 @@ Chạy file `auto_extract.py` sẽ tự động gọi file `start_extraction.py`
 Script `manipulate_benign_data.py` xử lí dữ liệu từ kết quả của script `auto_extract.py`, chuyển thành format phù hợp và lưu toàn bộ vào file `dataset_file.txt`, lưu ý sửa lại các `đường dẫn trong script cho phù hợp`.
 
 ### 3. Random forest 
-Chạy script này để lấy ra `50 api` và `50 string` được sử dụng nhiều nhất, chạy script minh họa thôi vì kết quả có sẵn trong file `training` luôn.
+Chạy script `random_forest.py` để lấy ra `50 api` và `50 string` được sử dụng nhiều nhất, chạy script minh họa thôi vì kết quả có sẵn trong file `training` luôn.
 
 ### 4. Adversarial samples generation
 - Mã nguồn mã độc: https://github.com/ytisf/theZoo/tree/master/malware/Source
