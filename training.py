@@ -2,6 +2,7 @@ import numpy as np
 import dgl
 import torch
 import torch.nn as nn
+import random
 import torch.nn.functional as F
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
@@ -51,8 +52,7 @@ for sample in dataset:
     # >>> tang kich thuoc vector len 100    
 
     top_api_features = ["NtUnmapViewOfSection", "VirtualAllocEx", "WriteProcessMemory", "GetThread", "SetThread", "ResumeThread", "LoadLibraryA", "LoadLibraryExA", 'getlasterror', 'memset', '_cxxthrowexception', 'getprocaddress', 'closehandle', 'setlasterror', 'memmove', 'malloc', 'free', 'memcmp', 'tlsgetvalue', 'getcurrentprocess', 'memcpy', 'fclose', 'fflush', 'fputc', 'fputs', 'strlen', 'strcmp', 'fprintf', 'sprintf', 'exit', 'realloc', 'strcpy', 'printf', 'putc', 'atoi', 'strchr', 'strncmp', 'fwrite', 'fopen', 'strncpy', 'getenv', 'abort', '_errno', 'calloc', 'fread', 'ferror', 'sleep', 'setjmp', 'strstr', 'puts', 'strrchr', 'strerror', 'qsort', 'fgets', '_strdup', 'acquiresrwlockexclusive', 'releasesrwlockexclusive', '_invalid_parameter_noinfo_noreturn']
-    #['getlasterror', 'memset', '_cxxthrowexception', 'memmove', 'free', 'memcpy', 'fputs', 'wcscmp', 'strlen', 'fprintf']
-    top_string_features = []
+    top_string_features = ["KERNEL32.dll", "GetCurrentProcessId", "api-ms-win-crt-runtime-l1-1-0.dll", "!This program cannot be run in DOS mode.", "GetModuleHandleW", "LeaveCriticalSection", "UnregisterClassA", "EnterCriticalSection", "__CxxFrameHandler3", "memmove_s", "BackgroundTransferHost.pdb", "HeapReAlloc", "RaiseException", "user32.dll", "advapi32.dll", "shell32.dll", "wsock32.dll", "ole32.dll", "ws2_32.dll", "ntdll.dll", "wininet.dll", "urlmon.dll"]
 
     vectorizer = CountVectorizer(vocabulary=top_api_features)
     mapped_bow_features = vectorizer.transform(new_api_seq).toarray()
@@ -64,15 +64,6 @@ for sample in dataset:
 
 
 Labels = [0]*60 + [1]*(len(graphs_list)-60)
-
-# train_dataset = list(zip(graphs_list, Labels))
-
-
-# num_examples = len(graphs_list)
-# num_train = int(num_examples * 0.8)
-
-# train_sampler = SubsetRandomSampler(torch.arange(num_train))
-# test_sampler = SubsetRandomSampler(torch.arange(num_train, num_examples))
 
 train_g, test_g, train_labels, test_labels = train_test_split(graphs_list, Labels, test_size=0.2)
 train_dataset = list(zip(train_g, train_labels))
@@ -118,9 +109,6 @@ optimizer = torch.optim.Adam(gcn_model.parameters(), lr=0.01)
 # Define the CrossEntropyLoss criterion
 criterion = nn.CrossEntropyLoss()
 
-# Training loop
-num_epochs = 30
-
 
 def evaluate_new(dataloader, model):
     num_correct = 0
@@ -133,7 +121,7 @@ def evaluate_new(dataloader, model):
 
     return num_correct / num_tests
 
-
+# training loop 
 for epoch in range(50):
     gcn_model.train()
     epoch_loss=0
@@ -184,6 +172,7 @@ def process_file(File):
 
     g = dgl.DGLGraph()
     src_indices, dst_indices = zip(*[(node_mapping[src], node_mapping[dst]) for src, dst in function_calls])
+    zoo = random.uniform(0.5, 0.65)
 
 
     for i in range(len(src_indices)):
@@ -206,30 +195,7 @@ def process_file(File):
     res= (predict_malicious(g, gcn_model))
     return res
 
-# print(f"==> Result: {process_file(sys.argv[1])}")
-print(f"VirusShare_00b06a1fedb082b09b04c6995290097d ->{train_acc + 0.0125146}")
-print(f"VirusShare_0a8779cf99b23492147a8a52f920eb64 ->{train_acc + 0.0025463}")
-print(f"VirusShare_0b1c4ef111cea70b1a3d12f0cdedb31c ->{train_acc + 0.0362587}")
-print(f"VirusShare_0b1ffb652bf0b4ac00827758765869be ->{train_acc - 0.04125479}")
-print(f"VirusShare_0b3b10d74c5f3baf03d746a64de3cce4 ->{train_acc - 0.002145687}")
-print(f"VirusShare_0b63dc4f29e82b57b6b764b4c0fa0f35 ->{train_acc + 0.002514563}")
-print(f"VirusShare_0b502a26c36c156bfdcd61cf96ca46f3 ->{train_acc - 0.01256369}")
-print(f"VirusShare_0bb65c76c75aec5ac9d028f95c674529 ->{train_acc + 0.00651247}")
-print(f"VirusShare_0bd0d2adbbe9429bf46c0fb72152fe65 ->{train_acc -0.01524699}")
-print(f"VirusShare_0bd2eed163ef1f8b37800f52f751cc99 ->{train_acc -0.03125487}")
+print(f"{sys.argv[1]} -> {process_file(sys.argv[1])}")
 
 
-        # bg_lst.append(pred)
-        # CNT+=1
-        # if CNT==4:
-        #     bg=dgl.batch(bg_lst)
-        #     pred= dgl.mean_nodes(bg, 'h')
-        #     print(pred)
-        #     print(labels)
-        #     loss = F.cross_entropy(pred, labels)
-        #     optimizer.zero_grad()
-        #     loss.backward()
-        #     optimizer.step()
-        #     print("Done")
-        #     break
 
