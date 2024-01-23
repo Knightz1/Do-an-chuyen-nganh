@@ -5,6 +5,7 @@ Cả malware và benign đều được lấy từ [figshare](https://figshare.c
 ### API, string, FCG extraction
 **Note:**
 - Cần có IDA pro (nhóm sử dụng phiên bản 7.5) để chạy script `auto_extract.py` và `start_extraction.py` , 2 file này cần đặt cùng thư mục với `thư mục chứa IDA pro` mới có thể chạy được.  
-- Sửa lại đường dẫn đến tập dataset và nơi lưu file hợp với mục đích sử dụng.  
+- Sửa lại đường dẫn đến tập dataset và nơi lưu file hợp với mục đích sử dụng.
+
 Chạy file `auto_extract.py` sẽ tự động gọi file `start_extraction.py` nên chỉ cần chạy file `auto_extract.py` là đủ.
 
