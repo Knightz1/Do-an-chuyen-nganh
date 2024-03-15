@@ -7,7 +7,7 @@ Cả malware và benign đều được lấy từ [figshare](https://figshare.c
 - Cần có IDA pro (nhóm sử dụng phiên bản 7.5) để chạy script `auto_extract.py` và `start_extraction.py` , 2 file này cần đặt cùng thư mục với `thư mục chứa IDA pro` mới có thể chạy được.  
 - Sửa lại đường dẫn đến tập dataset và nơi lưu file hợp với mục đích sử dụng.
 
-Chạy file `auto_extract.py` sẽ tự động gọi file `start_extraction.py` nên chỉ cần chạy file `auto_extract.py` là đủ.  
+Chạy file `start_extraction.py` sẽ tự động gọi file `auto_extract.py` nên chỉ cần chạy file `auto_extract.py` là đủ.  
 
 ### 2. Xử lí dữ liệu
 Script `manipulate_data.py` xử lí dữ liệu từ kết quả của script `auto_extract.py`, chuyển thành format phù hợp và lưu toàn bộ vào file `dataset_file.txt`, lưu ý sửa lại các đường dẫn trong script cho phù hợp.
